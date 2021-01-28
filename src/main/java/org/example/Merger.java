@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.Interval;
+import org.example.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,10 @@ import static org.example.model.Interval.interval;
 
 public class Merger {
 
-    public static List<Interval> merge(final Stream<Interval> intervalStream) {
-        return List.of();
+    public static List<Interval> merge(Stream<Interval> intervalStream) {
+        final Tree tree = new Tree();
+        intervalStream.forEach(tree::addInterval);
+        return tree.collectIntervals();
     }
 
     public static void main(String[] args) {
